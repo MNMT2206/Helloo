@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday Moniiiiii</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffe0f0, #f0e0ff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+    }
+    .container {
+      text-align: center;
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 3em;
+      color: #ff69b4;
+      margin-bottom: 10px;
+      animation: float 3s ease-in-out infinite;
+    }
+    img {
+      width: 200px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+    .message {
+      font-size: 1.4em;
+      color: #555;
+      margin-top: 30px;
+      line-height: 1.5;
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: floatUp 6s infinite;
+      opacity: 0.7;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+    /* Music button */
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      z-index: 5;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<div class="container">
+  <h1>Happy Birthday Moniiiiii!</h1>
+  <img src="moniiiiii.jpg" alt="Moniiiiii">
+  <div class="message">
+    Wishing you all the love, laughter, and happiness you deserve!<br>
+    May your smile shine brighter than ever today and always.<br><br>
+    You are truly special, Moniiiiii!
+  </div>
+</div>
+
+<button class="music-btn" onclick="toggleMusic()">Play Music</button>
+
+<audio id="birthdayMusic" loop>
+  <source src="birthday-music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  // Generate hearts
+  const heartsContainer = document.querySelector('.hearts');
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+    heart.style.opacity = Math.random();
+    heartsContainer.appendChild(heart);
+  }
+
+  // Music control
+  const music = document.getElementById('birthdayMusic');
+  const musicBtn = document.querySelector('.music-btn');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      musicBtn.textContent = "Play Music";
+    } else {
+      music.play();
+      musicBtn.textContent = "Pause Music";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
+</body>
+</html>
